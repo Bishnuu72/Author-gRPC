@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package authors;
+
+service AuthorService {
+  rpc CreateAuthor (AuthorRequest) returns (AuthorResponse) {}
+  rpc GetAuthor (AuthorId) returns (AuthorResponse) {}
+  rpc UpdateAuthor (AuthorRequest) returns (AuthorResponse) {}
+  rpc DeleteAuthor (AuthorId) returns (DeleteResponse) {}
+  rpc ListAuthors (Empty) returns (AuthorList) {}
+}
+
+message AuthorRequest {
+  string id = 1;
+  string name = 2;
+  int32 age = 3;
+  repeated string books = 4;
+}
+
+message AuthorResponse {
+  string id = 1;
+  string name = 2;
+  int32 age = 3;
+  repeated string books = 4;
+}
+
+message AuthorId {
+  string id = 1;
+}
+
+message DeleteResponse {
+  bool success = 1;
+}
+
+message AuthorList {
+  repeated AuthorResponse authors = 1;
+}
+
+message Empty {}
