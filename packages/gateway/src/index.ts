@@ -1,3 +1,4 @@
+/*
 import express from "express";
 import bodyParser from "body-parser";
 import * as grpc from "@grpc/grpc-js";
@@ -137,7 +138,7 @@ app.get("/books", (req: any, res: any) => {
         res.json(response);
     });
 });
-
+ 
 
 swaggerSetup(app);
 
@@ -147,3 +148,33 @@ const port = Number(process.env.HTTP_PORT) || 3000;
 app.listen(port, () => {
     console.log(`HTTP gateway listening on port ${port}`);
 });
+*/
+
+
+import express from "express";
+import bodyParser from "body-parser";
+import authRoutes from "./routes/auth.routes";
+import bookRoutes from "./routes/book.routes";
+import { client } from "./grpcClient";
+import { swaggerSetup } from "./swagger";
+
+const app = express();
+
+app.use(bodyParser.json());
+
+// Inject gRPC client globally
+app.locals.grpcClient = client;
+
+// Routes
+app.use("/auth", authRoutes);
+app.use("/books", bookRoutes);
+
+// Swagger docs
+swaggerSetup(app);
+
+// Start server
+const port = Number(process.env.HTTP_PORT) || 3000;
+app.listen(port, () => {
+    console.log(`HTTP gateway listening on port ${port}`);
+});
+
