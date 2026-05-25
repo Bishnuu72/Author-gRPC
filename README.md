@@ -311,7 +311,7 @@ This project is licensed under the ISC License. See the `package.json` file for 
 ## 👨‍💼 Author
 
 **Bishnu Kumar Yadav**
-- GitHub: [@bishnukumaryadav](https://github.com/bishnukumaryadav)
+- GitHub: [@bishnukumaryadav](https://github.com/bishnuu72)
 
 ## 🙏 Acknowledgments
 
